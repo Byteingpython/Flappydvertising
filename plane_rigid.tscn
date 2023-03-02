@@ -1,0 +1,108 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Unbenannt.png" type="Texture" id=2]
+
+[sub_resource type="GDScript" id=4]
+script/source = "extends RigidBody2D
+
+signal despawn(entity)
+signal score()
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+signal multiply(multiplicator)
+signal divide(multiplicator)
+
+var running=true
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass
+
+
+func _process(delta):
+	pass
+	
+func _physics_process(delta):
+	if(Input.is_action_pressed(\"up\")):
+		linear_velocity =Vector2(0, -200)
+		$CollisionShape2D.rotation_degrees =-30
+	else:
+		$CollisionShape2D.position += transform.y * 200 *delta
+		$CollisionShape2D.rotation_degrees = 30
+	
+
+	
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+
+func _on_VisibilityNotifier2D_screen_exited():
+	
+	emit_signal(\"despawn\", self)
+	
+
+
+
+
+
+func _on_RigidBody2D_area_entered(area):
+	
+	_on_VisibilityNotifier2D_screen_exited()
+
+
+func _on_RigidBody2D_body_entered(body):
+	if(body.has_method(\"getMultiplicator\")):
+		print(body.getMultiplicator())
+		if(body.getMultiplicator()>=0):
+			emit_signal(\"multiply\", body.getMultiplicator())
+		else:
+			emit_signal(\"divide\", body.getMultiplicator()*-1)
+		body.disable()
+		return
+		
+	_on_VisibilityNotifier2D_screen_exited()
+
+
+func _on_Timer_timeout():
+	if(running):
+		emit_signal(\"score\")
+		
+"
+
+[sub_resource type="CanvasItemMaterial" id=1]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 27.1247, 11.8926 )
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="RigidBody2D" type="RigidBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = SubResource( 4 )
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+modulate = Color( 0.988235, 0.866667, 0.866667, 1 )
+material = SubResource( 1 )
+position = Vector2( -0.554779, 4.71562 )
+shape = SubResource( 2 )
+
+[node name="Plane" type="AnimatedSprite" parent="CollisionShape2D"]
+position = Vector2( 0, -0.459641 )
+scale = Vector2( 1.73, 1.444 )
+frames = SubResource( 3 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( -0.670651, 4.47252 )
+scale = Vector2( 2.59254, 1.04421 )
+[connection signal="body_entered" from="." to="." method="_on_RigidBody2D_body_entered"]

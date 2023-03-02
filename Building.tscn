@@ -1,12 +1,34 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Hochhaus.png" type="Texture" id=1]
 [ext_resource path="res://Building.gd" type="Script" id=2]
+[ext_resource path="res://Tor.png" type="Texture" id=3]
+[ext_resource path="res://RigidBody2D2.gd" type="Script" id=4]
+[ext_resource path="res://Tor_green.png" type="Texture" id=5]
+[ext_resource path="res://RobotoMono-VariableFont_wght.ttf" type="DynamicFontData" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 34.5531, 123.131 )
 
-[node name="Area2D" type="Area2D"]
+[sub_resource type="DynamicFont" id=2]
+size = 26
+font_data = ExtResource( 6 )
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 25.0658, 30.6119 )
+
+[node name="Area2D" type="RigidBody2D"]
+mode = 1
+gravity_scale = 0.0
+can_sleep = false
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -19,4 +41,58 @@ texture = ExtResource( 1 )
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 position = Vector2( -3.8147e-06, -1.14441e-05 )
 scale = Vector2( 3.46273, 12.3206 )
-[connection signal="area_entered" from="." to="." method="_on_Area2D_area_entered"]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+mode = 1
+gravity_scale = 0.0
+script = ExtResource( 4 )
+
+[node name="Label3" type="Label" parent="RigidBody2D"]
+margin_left = -19.3033
+margin_top = -170.212
+margin_right = 20.6967
+margin_bottom = -141.212
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/font = SubResource( 2 )
+text = "*2"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="RigidBody2D"]
+position = Vector2( 0, -160 )
+scale = Vector2( 4.241, 4.507 )
+frames = SubResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2( -0.440125, -156.64 )
+shape = SubResource( 4 )
+
+[node name="RigidBody2D2" type="RigidBody2D" parent="."]
+position = Vector2( 0, -308.14 )
+rotation = 3.14159
+mode = 1
+script = ExtResource( 4 )
+
+[node name="Label3" type="Label" parent="RigidBody2D2"]
+margin_left = 18.7629
+margin_top = 22.5596
+margin_right = 58.7629
+margin_bottom = 58.5596
+rect_rotation = -180.0
+custom_fonts/font = SubResource( 2 )
+text = "*2"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="RigidBody2D2"]
+position = Vector2( 0, 1.94158 )
+scale = Vector2( 4.24079, 4.5073 )
+frames = SubResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D2"]
+position = Vector2( 0, 6.58551 )
+shape = SubResource( 4 )
