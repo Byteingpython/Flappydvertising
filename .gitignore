@@ -6,6 +6,5 @@ bin/
 build/
 lib/
 addons/
-*.ttf
 
 android/
