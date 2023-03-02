@@ -20,7 +20,7 @@ func _ready():
 	$RigidBody2D2.setMultiplicator(count)
 	$RigidBody2D.setTor($RigidBody2D2)
 	$RigidBody2D2.setTor($RigidBody2D)
-func _physics_process(delta):
+func _process(delta):
 	position += transform.x * -400 * delta 
 	
 func building():
@@ -32,4 +32,3 @@ func building():
 
 func _on_Area2D_area_entered(area):
 	print("collide")
-
