@@ -20,10 +20,10 @@ func _process(delta):
 	
 func _physics_process(delta):
 	if(Input.is_action_pressed("up")):
-		$CollisionShape2D.position += transform.y * -200 *delta
+		position += transform.y * -200 *delta
 		$CollisionShape2D.rotation_degrees =-30
 	else:
-		$CollisionShape2D.position += transform.y * 200 *delta
+		position += transform.y * 200 *delta
 		$CollisionShape2D.rotation_degrees = 30
 	
 
