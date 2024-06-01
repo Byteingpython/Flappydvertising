@@ -50,6 +50,7 @@ func multiply(Multiplicator):
 		plane.connect("multiply", self, "multiply")
 		plane.connect("divide", self, "divide")
 	$AudioStreamPlayer.pitch_scale=1+(planes.size()-1)*0.003
+	
 func divide(Dividend):
 	print("divide")
 	for i in range(int(round(planes.size()-(planes.size()/Dividend)))):
@@ -65,7 +66,7 @@ func _on_Timer_timeout():
 	building.position = Vector2(1068, 520+offset)
 	building = building_scene.instance()
 	add_child(building)
-	building.position = Vector2(1068, -25+offset)
+	building.position = Vector2(1068, offset)
 	
 	
 func _on_despawn(entity):

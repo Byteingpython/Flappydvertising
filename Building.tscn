@@ -71,7 +71,7 @@ position = Vector2( -0.440125, -156.64 )
 shape = SubResource( 4 )
 
 [node name="RigidBody2D2" type="RigidBody2D" parent="."]
-position = Vector2( 0, -383.14 )
+position = Vector2( 0, -358.14 )
 rotation = 3.14159
 mode = 1
 script = ExtResource( 4 )
