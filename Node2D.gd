@@ -50,7 +50,7 @@ func stop():
 
 func multiply(Multiplicator):
 	var plane
-	for i in range(clamp(planes.size()*(Multiplicator-1), 0, 20-planes.size())):
+	for i in range(clamp(planes.size()*(Multiplicator-1), 0, 40-planes.size())):
 		plane = plane_scene.instance()
 		add_child(plane)
 		planes.append(plane)
