@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Node2D.gd" type="Script" id=1]
 [ext_resource path="res://plane.tscn" type="PackedScene" id=2]
@@ -6,12 +6,7 @@
 [ext_resource path="res://RobotoMono-VariableFont_wght.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://Broke For Free - Calm The Fuck Down.ogg" type="AudioStream" id=5]
 [ext_resource path="res://Rastergrafik.png" type="Texture" id=6]
-
-[sub_resource type="DynamicFont" id=1]
-size = 300
-use_filter = true
-extra_spacing_top = 4
-font_data = ExtResource( 4 )
+[ext_resource path="res://Font.tres" type="DynamicFont" id=7]
 
 [sub_resource type="DynamicFont" id=2]
 size = 20
@@ -20,6 +15,13 @@ font_data = ExtResource( 4 )
 [sub_resource type="DynamicFont" id=3]
 size = 25
 font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFontData" id=4]
+font_path = "res://RobotoMono-VariableFont_wght.ttf"
+
+[sub_resource type="DynamicFont" id=5]
+size = 37
+font_data = SubResource( 4 )
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 1 )
@@ -42,22 +44,22 @@ __meta__ = {
 
 [node name="Label" type="Label" parent="."]
 visible = false
-margin_top = 8.0
-margin_right = 1032.0
-margin_bottom = 610.0
-custom_fonts/font = SubResource( 1 )
+margin_left = 1.97198
+margin_top = 0.142792
+margin_right = 1033.97
+margin_bottom = 602.143
+custom_fonts/font = ExtResource( 7 )
 text = "42"
 align = 1
-valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="Label"]
-margin_left = 5.0
-margin_top = 522.0
-margin_right = 1035.0
-margin_bottom = 592.0
+margin_left = -9.25989
+margin_top = 534.599
+margin_right = 1028.74
+margin_bottom = 591.599
 custom_fonts/font = SubResource( 2 )
 text = "Song: Broke For Free - Calm The Fuck Down
 brokeforfree.com"
@@ -85,6 +87,14 @@ texture_normal = ExtResource( 6 )
 texture_pressed = ExtResource( 6 )
 texture_hover = ExtResource( 6 )
 expand = true
+
+[node name="Label2" type="Label" parent="Label"]
+margin_left = 467.194
+margin_top = 40.0452
+margin_right = 585.194
+margin_bottom = 115.045
+custom_fonts/font = SubResource( 5 )
+text = "Score"
 
 [node name="Timer2" type="Timer" parent="."]
 wait_time = 2.45

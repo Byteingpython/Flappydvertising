@@ -56,15 +56,18 @@ func divide(Dividend):
 		planes[i].queue_free()
 	print(planes.size())
 	$AudioStreamPlayer.pitch_scale=1+(planes.size()-1)*0.003
-func _on_Timer_timeout():
 	
+	
+func _on_Timer_timeout():
 	var building = building_scene.instance()
 	var offset = rand_range(-50, 50)
 	add_child(building)
 	building.position = Vector2(1068, 520+offset)
 	building = building_scene.instance()
 	add_child(building)
-	building.position = Vector2(1068, 50+offset)
+	building.position = Vector2(1068, -25+offset)
+	
+	
 func _on_despawn(entity):
 	planes.erase(entity) 
 	entity.queue_free()
@@ -72,7 +75,8 @@ func _on_despawn(entity):
 		$Timer.stop()
 		$Timer2.start()
 		$Label.text=str(score)
-	$AudioStreamPlayer.pitch_scale=1+(planes.size()-1)*0.003
+	$AudioStreamPlayer.pitch_scale=1+(planes.size()-1)*0.003	
+
 func _on_score():
 	score +=1
 	
