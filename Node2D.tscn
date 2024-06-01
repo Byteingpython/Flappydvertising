@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Node2D.gd" type="Script" id=1]
 [ext_resource path="res://plane.tscn" type="PackedScene" id=2]
@@ -23,6 +23,34 @@ font_path = "res://RobotoMono-VariableFont_wght.ttf"
 size = 37
 font_data = SubResource( 4 )
 
+[sub_resource type="DynamicFontData" id=6]
+font_path = "res://RobotoMono-VariableFont_wght.ttf"
+
+[sub_resource type="DynamicFont" id=7]
+size = 67
+font_data = SubResource( 6 )
+
+[sub_resource type="DynamicFontData" id=8]
+font_path = "res://RobotoMono-VariableFont_wght.ttf"
+
+[sub_resource type="DynamicFont" id=9]
+size = 17
+font_data = SubResource( 8 )
+
+[sub_resource type="DynamicFontData" id=10]
+font_path = "res://RobotoMono-VariableFont_wght.ttf"
+
+[sub_resource type="DynamicFont" id=11]
+size = 35
+font_data = SubResource( 10 )
+
+[sub_resource type="DynamicFontData" id=12]
+font_path = "res://RobotoMono-VariableFont_wght.ttf"
+
+[sub_resource type="DynamicFont" id=13]
+size = 17
+font_data = SubResource( 12 )
+
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 1 )
 building_scene = ExtResource( 3 )
@@ -30,13 +58,12 @@ plane_scene = ExtResource( 2 )
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5
-autostart = true
 
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_left = -11.0124
-margin_top = -4.16324
+margin_top = -3.04074
 margin_right = 1028.98
-margin_bottom = 603.837
+margin_bottom = 604.959
 color = Color( 0.156863, 0.294118, 0.388235, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -107,8 +134,57 @@ autoplay = true
 [node name="Tween" type="Tween" parent="AudioStreamPlayer"]
 
 [node name="Timer3" type="Timer" parent="."]
+
+[node name="Menu" type="Node2D" parent="."]
+
+[node name="Label" type="Label" parent="Menu"]
+margin_left = -12.5199
+margin_top = 175.198
+margin_right = 1024.48
+margin_bottom = 265.198
+custom_fonts/font = SubResource( 7 )
+text = "Flappydvertising"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="Menu"]
+margin_left = -17.5199
+margin_top = 265.198
+margin_right = 1023.48
+margin_bottom = 321.198
+custom_fonts/font = SubResource( 9 )
+text = "A unique mix between Flappy Bird and those famous mobile-game ads"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="Menu"]
+margin_left = 447.604
+margin_top = 385.492
+margin_right = 580.604
+margin_bottom = 473.492
+custom_fonts/font = SubResource( 11 )
+text = "Play"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="Menu"]
+margin_left = 779.546
+margin_top = 577.986
+margin_right = 1029.55
+margin_bottom = 600.986
+custom_fonts/font = SubResource( 13 )
+text = "Controls: Up=Spacebar/LMB"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="button_down" from="Label/Button" to="." method="_on_Button_button_down"]
 [connection signal="button_down" from="Label/TextureButton" to="." method="_on_TextureButton_button_down"]
 [connection signal="timeout" from="Timer2" to="." method="_on_Timer2_timeout"]
 [connection signal="timeout" from="Timer3" to="." method="_on_Timer3_timeout"]
+[connection signal="button_up" from="Menu/Button" to="." method="start"]

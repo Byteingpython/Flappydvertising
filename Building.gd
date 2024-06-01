@@ -20,6 +20,7 @@ func _ready():
 	$RigidBody2D2.setMultiplicator(count)
 	$RigidBody2D.setTor($RigidBody2D2)
 	$RigidBody2D2.setTor($RigidBody2D)
+	
 func _process(delta):
 	position += transform.x * -400 * delta 
 	

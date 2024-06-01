@@ -12,6 +12,9 @@ var score = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
+	
+	
+func start():
 	var plane = plane_scene.instance()
 	add_child(plane)
 	planes.append(plane)
@@ -21,6 +24,15 @@ func _ready():
 	plane.connect("multiply", self, "multiply")
 	plane.connect("divide", self, "divide")
 	$AudioStreamPlayer.seek(36.1)
+	$Menu.hide()
+	$Timer.start()
+	
+func stop():
+	$Timer.stop()
+	$Timer2.start()
+	$Label.text=str(score)
+	
+	
 	
 
 #func _process(delta):
@@ -73,9 +85,7 @@ func _on_despawn(entity):
 	planes.erase(entity) 
 	entity.queue_free()
 	if(planes.size()==0):
-		$Timer.stop()
-		$Timer2.start()
-		$Label.text=str(score)
+		stop()
 	$AudioStreamPlayer.pitch_scale=1+(planes.size()-1)*0.003	
 
 func _on_score():
